@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYBORG // SYSTEM ONLINE</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#05070b;color:#eafcff;font-family:Inter,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;background:linear-gradient(rgba(0,255,255,.025) 1px,transparent 1px);background-size:100% 4px;mix-blend-mode:screen}
+a{text-decoration:none;color:inherit}
+.bg{position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 75% 35%,rgba(0,255,255,.13),transparent 28%),radial-gradient(circle at 20% 75%,rgba(157,0,255,.12),transparent 30%),#05070b}
+.grid{position:fixed;inset:0;z-index:-2;opacity:.23;background-image:linear-gradient(rgba(0,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.12) 1px,transparent 1px);background-size:55px 55px;transform:perspective(600px) rotateX(58deg) scale(1.6) translateY(22%);transform-origin:center bottom}
+header{height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 7%;border-bottom:1px solid rgba(0,255,255,.12);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10;background:rgba(5,7,11,.72)}
+.logo{font-family:Orbitron;letter-spacing:4px;font-weight:800}.logo span{color:#00f6ff}
+nav{display:flex;gap:30px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#91a9b1}
+nav a:hover{color:#00f6ff}
+.status{font:11px Orbitron;color:#00f6ff;letter-spacing:2px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#00f6ff;box-shadow:0 0 12px #00f6ff;margin-right:7px;animation:pulse 1.3s infinite}
+.hero{min-height:calc(100vh - 78px);display:grid;grid-template-columns:1.05fr .95fr;align-items:center;padding:60px 7%;gap:30px}
+.eyebrow{font:12px Orbitron;letter-spacing:4px;color:#00f6ff;margin-bottom:20px}
+h1{font:700 clamp(48px,7vw,100px)/.9 Orbitron;letter-spacing:-3px;text-transform:uppercase;max-width:760px}
+h1 .line{display:block}.ghost{color:transparent;-webkit-text-stroke:1px #8ba6ae}
+.hero p{margin:28px 0;max-width:590px;color:#8fa6ae;line-height:1.8;font-size:16px}
+.actions{display:flex;gap:15px;flex-wrap:wrap}
+.btn{font:600 12px Orbitron;letter-spacing:2px;padding:16px 24px;border:1px solid #00f6ff;position:relative;overflow:hidden;transition:.3s}
+.btn.primary{background:#00f6ff;color:#041014;box-shadow:0 0 30px rgba(0,246,255,.22)}
+.btn.secondary{border-color:#33464d;color:#b7c9cd}.btn:hover{transform:translateY(-3px);box-shadow:0 0 28px rgba(0,246,255,.28)}
+.cyborg{height:600px;position:relative;display:grid;place-items:center}
+.head{width:min(390px,72vw);aspect-ratio:.82;background:linear-gradient(135deg,#1b2930,#071014 50%,#24363c);clip-path:polygon(24% 4%,76% 4%,91% 24%,88% 72%,72% 94%,28% 94%,12% 72%,9% 24%);filter:drop-shadow(0 0 35px rgba(0,246,255,.28));position:relative;animation:float 5s ease-in-out infinite}
+.head:before{content:"";position:absolute;inset:5%;border:1px solid rgba(0,246,255,.28);clip-path:inherit}
+.face{position:absolute;left:14%;right:14%;top:27%;height:38%;background:#091116;clip-path:polygon(5% 0,95% 0,100% 72%,78% 100%,22% 100%,0 72%);border:1px solid #00f6ff}
+.eye{position:absolute;top:32%;width:30%;height:9px;background:#00f6ff;box-shadow:0 0 22px #00f6ff;transform:skew(-18deg)}.eye.left{left:12%}.eye.right{right:12%}
+.nose{position:absolute;left:47%;top:35%;height:35%;width:6%;background:#22353c;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.jaw{position:absolute;left:28%;right:28%;bottom:13%;height:16%;border-bottom:2px solid #00f6ff;box-shadow:0 12px 25px rgba(0,246,255,.16)}
+.circuit{position:absolute;width:110%;height:1px;background:#00f6ff;opacity:.55;left:-5%;top:50%;box-shadow:0 0 15px #00f6ff}.scan{position:absolute;left:10%;right:10%;height:2px;background:#00f6ff;box-shadow:0 0 18px #00f6ff;top:20%;animation:scan 3s linear infinite}
+.hud{position:absolute;border:1px solid rgba(0,246,255,.35);padding:14px;background:rgba(4,13,17,.72);backdrop-filter:blur(8px);font:10px/1.7 Orbitron;letter-spacing:1px;color:#8edce1}.hud b{color:#00f6ff}.hud.one{top:12%;right:2%}.hud.two{bottom:15%;left:0}.hud.three{bottom:5%;right:7%}
+.section{padding:110px 7%;position:relative}.section-title{font:600 36px Orbitron;letter-spacing:2px}.section-sub{color:#738b93;margin-top:12px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:45px}.card{border:1px solid #1a343b;background:rgba(7,14,18,.72);padding:30px;min-height:210px;transition:.35s;position:relative}.card:hover{border-color:#00f6ff;transform:translateY(-7px);box-shadow:0 0 35px rgba(0,246,255,.08)}.num{font:12px Orbitron;color:#00f6ff}.card h3{font:20px Orbitron;margin:25px 0 13px}.card p{color:#7f959c;line-height:1.7;font-size:14px}
+.contact{display:flex;justify-content:space-between;align-items:center;border:1px solid #17343b;padding:45px;background:linear-gradient(90deg,rgba(0,246,255,.05),transparent)}
+footer{padding:35px 7%;border-top:1px solid rgba(0,255,255,.1);color:#60757d;font-size:11px;letter-spacing:1px;display:flex;justify-content:space-between}
+.reveal{opacity:0;transform:translateY(25px);transition:1s}.reveal.show{opacity:1;transform:none}
+@keyframes pulse{50%{opacity:.35}}@keyframes float{50%{transform:translateY(-15px)}}@keyframes scan{0%{top:15%;opacity:0}20%{opacity:1}80%{opacity:1}100%{top:82%;opacity:0}}
+@media(max-width:850px){nav{display:none}.hero{grid-template-columns:1fr;padding-top:75px}.cyborg{height:470px}.cards{grid-template-columns:1fr}.contact{flex-direction:column;align-items:flex-start;gap:25px}h1{letter-spacing:-2px}.hud.one{right:-3%}}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="grid"></div>
+<header>
+  <div class="logo">CYBORG<span>//</span>01</div>
+  <nav><a href="#system">System</a><a href="#modules">Modules</a><a href="#connect">Connect</a></nav>
+  <div class="status"><i class="dot"></i>ONLINE</div>
+</header>
+
+<main>
+<section class="hero" id="system">
+  <div class="reveal">
+    <div class="eyebrow">[ NEXT-GEN HUMAN INTERFACE ]</div>
+    <h1><span class="line">Human</span><span class="line ghost">Beyond</span><span class="line">Limits.</span></h1>
+    <p>A cinematic cybernetic interface for the future. Merge human creativity with machine intelligence, adaptive systems and relentless performance.</p>
+    <div class="actions"><a class="btn primary" href="#modules">INITIALIZE</a><a class="btn secondary" href="#connect">EXPLORE SYSTEM</a></div>
+  </div>
+  <div class="cyborg reveal">
+    <div class="head"><div class="face"><div class="eye left"></div><div class="eye right"></div><div class="nose"></div><div class="jaw"></div></div><div class="circuit"></div><div class="scan"></div></div>
+    <div class="hud one">CORE // <b>99.8%</b><br>NEURAL LINK // <b>STABLE</b><br>SYNC // <b>ACTIVE</b></div>
+    <div class="hud two">BIOS v7.41<br>MEMORY <b>128TB</b><br>LATENCY <b>0.02ms</b></div>
+    <div class="hud three">◈ TARGET LOCKED<br><b>CYBERNETIC UNIT 01</b></div>
+  </div>
+</section>
+
+<section class="section reveal" id="modules">
+  <div class="section-title">SYSTEM MODULES</div><div class="section-sub">Engineered for the next generation of digital experiences.</div>
+  <div class="cards">
+    <article class="card"><span class="num">01 / NEURAL</span><h3>Adaptive Intelligence</h3><p>Interfaces that learn, react and evolve with every interaction, turning data into instinct.</p></article>
+    <article class="card"><span class="num">02 / SYNTH</span><h3>Cybernetic Design</h3><p>A fusion of machine precision and human emotion wrapped in a high-impact visual system.</p></article>
+    <article class="card"><span class="num">03 / CORE</span><h3>Extreme Performance</h3><p>Fast, responsive and optimized for modern devices with an interface built to feel alive.</p></article>
+  </div>
+</section>
+
+<section class="section reveal" id="connect">
+  <div class="contact"><div><div class="eyebrow">SYSTEM ACCESS</div><div class="section-title">READY TO EVOLVE?</div><div class="section-sub">Initialize your next digital experience.</div></div><a class="btn primary" href="mailto:hello@example.com">CONNECT // NOW</a></div>
+</section>
+</main>
+<footer><span>CYBORG SYSTEMS © 2026</span><span>STATUS: ALL SYSTEMS NOMINAL</span></footer>
+<script>
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.addEventListener('mousemove',e=>{
+ const x=(e.clientX/innerWidth-.5)*2, y=(e.clientY/innerHeight-.5)*2;
+ const head=document.querySelector('.head');
+ if(head) head.style.transform=`translate(${x*7}px,${y*5}px)`;
+});
+</script>
+</body>
+</html>
